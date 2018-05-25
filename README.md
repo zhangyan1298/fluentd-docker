@@ -1,0 +1,2 @@
+# fluentd-docker
+build fluentd
