@@ -5,5 +5,4 @@ RUN cp /etc/td-agent/td-agent.conf{,bak}
 RUN sed -i /^[UG]/s/td-agent$/root/g  /usr/lib/systemd/system/td-agent.service
 COPY td-agent.conf /etc/td-agent/
 RUN systemctl enable td-agent
-CMD [ "/usr/sbin/init"]
-RUN systemctl start td-agent
+RUN td-agent
