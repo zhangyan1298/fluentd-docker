@@ -11,8 +11,8 @@ spec:
   volumeMounts:
   - name: messagelog
     path: /var/log/message
-  - name: varlog
-    path: /var/log
+  - name: containerslog
+    path: /var/lib/docker/containers
   resources:
    limit:
     cpu: 500m
@@ -24,8 +24,9 @@ spec:
   - name: messagelog
     hostPath:
      path: /var/log/message
-     readOnly: true
-  - name: varlog
+     readOnly: false
+  - name: containerslog
     hostPath:
-     path: /var/log
+     path: /var/lib/docker/containers
+     readOnly: false
   
