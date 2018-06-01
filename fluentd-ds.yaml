@@ -7,4 +7,22 @@ metadata:
 spec:
  containers:
   name: fluentd-ds
-  imgae：dockeryanxiao/fluentd-docker
+  image：dockeryanxiao/fluentd-docker
+  volumeMounts:
+  - name: logmessage
+    path: /var/log/message
+    name: varlog
+    path: /var/log
+  resources:
+   limit:
+    cpu: 500m
+    memory: 500Mi
+   request:
+    cpu:256m
+    memory: 256Mi
+ volume:
+  - name: logmessage
+    hostPath: /var/log/message
+    name: varlog
+    hostPath: /var/log
+  
