@@ -1,32 +1,36 @@
-apiversion: v1
+apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
  name: fluentd-ds
  labels:
   name: fluentd-ds
 spec:
- containers:
-  name: fluentd-ds
-  image：dockeryanxiao/fluentd-docker
-  volumeMounts:
-  - name: messagelog
-    path: /var/log/message
-  - name: containerslog
-    path: /var/lib/docker/containers
-  resources:
-   limit:
-    cpu: 500m
-    memory: 500Mi
-   request:
-    cpu:256m
-    memory: 256Mi
- volume:
-  - name: messagelog
-    hostPath:
-     path: /var/log/message
-     readOnly: false
-  - name: containerslog
-    hostPath:
-     path: /var/lib/docker/containers
-     readOnly: false
+ template:
+  metadata:
+   name: fluentd-ds
+   labels:
+    name: fluentd-ds
+  spec:
+   containers:
+   - name: fluentd-ds
+     image: dockeryanxiao/fluentd-docker
+     volumeMounts:
+     - name: messagelog
+       mountPath: /var/log/messages
+     - name: containerslog
+       mountPath: /var/lib/docker/containers
+     resources:
+      limits:
+       cpu: 500m
+       memory: 500Mi
+      requests:
+       cpu: 256m
+       memory: 256Mi
+   volumes:
+   - name: messagelog
+     hostPath:
+      path: /var/log/messages
+   - name: containerslog
+     hostPath:
+      path: /var/lib/docker/containers
   
