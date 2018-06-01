@@ -1,0 +1,10 @@
+apiversion: v1
+kind: DaemonSet
+metadata:
+ name: fluentd-ds
+ labels:
+  name: fluentd-ds
+spec:
+ containers:
+  name: fluentd-ds
+  imgae：dockeryanxiao/fluentd-docker
