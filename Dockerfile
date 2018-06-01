@@ -7,4 +7,5 @@ RUN sed -i /^[UG]/s/td-agent$/root/g  /etc/init.d/td-agent
 COPY td-agent.conf /etc/td-agent/
 RUN chkconfig  td-agent on
 RUN service td-agent start
+CMD ['service','td-agent','start']
 
