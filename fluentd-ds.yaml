@@ -9,9 +9,9 @@ spec:
   name: fluentd-ds
   image：dockeryanxiao/fluentd-docker
   volumeMounts:
-  - name: logmessage
+  - name: messagelog
     path: /var/log/message
-    name: varlog
+  - name: varlog
     path: /var/log
   resources:
    limit:
@@ -21,8 +21,11 @@ spec:
     cpu:256m
     memory: 256Mi
  volume:
-  - name: logmessage
-    hostPath: /var/log/message
-    name: varlog
-    hostPath: /var/log
+  - name: messagelog
+    hostPath:
+     path: /var/log/message
+     readOnly: true
+  - name: varlog
+    hostPath:
+     path: /var/log
   
